@@ -1,0 +1,148 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --rotate-y: 0;
+  --rotate-x: 0;
+  --ratio: calc(1vw + 1vh);
+  --logo-size: calc(var(--ratio) * 7.8);
+  --transition: 1.5s cubic-bezier(0.05, 0.5, 0, 1);
+}
+
+@font-face {
+  font-family: kamerik-3d, Tahoma;
+  src: url(../fonts/kamerik205-heavy.woff2);
+  font-weight: 900;
+}
+
+@font-face {
+  font-family: merriweather-italic-3d;
+  src: url(../fonts/merriweather-regular-italic.woff2);
+}
+
+body {
+  background-color: #000;
+  color: #fff;
+  font-family: kamerik-3d, sans-serif;
+}
+
+.logo {
+  width: var(--logo-size);
+  height: var(--logo-size);
+  position: absolute;
+  left: calc(51% - calc(var(--logo-size) / 2));
+  top: calc(var(--ratio) * 2.8);
+  background-image: url(../images/logo.svg);
+  background-repeat: no-repeat;
+  z-index: 1;
+}
+
+.layers {
+  perspective: 1000px;
+  overflow: hidden;
+}
+
+.layers__container {
+  height: 100vh;
+  min-height: 500px;
+  transform-style: preserve-3d;
+  transform: rotateX(var(--rotate-x)) rotateY(var(--rotate-y));
+  transition: transform var(--transition);
+  will-change: transform;
+}
+
+.layers__item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: -5vw;
+  bottom: -5vw;
+  left: -5vw;
+  right: -5vw;
+  //inset: -5vw;
+  background-size: cover;
+  background-position: center;
+}
+
+.layer-background {
+  transform: translateZ(-55px) scale(1.06);
+  background-image: url(../images/background.jpg);
+}
+
+.layer-1-ast {
+  transform: translateZ(80px) scale(0.88);
+  background-image: url(../images/layer-1-ast.png);
+}
+
+.layer-2-main {
+  transform: translateZ(180px) scale(0.8);
+}
+
+.layer-3-rain {
+  transform: translateZ(190px) scale(0.9);
+}
+
+.layer-4-leaves {
+  transform: translateZ(300px) scale(0.9);
+  background-image: url(../images/layer-4-leaves.png);
+}
+
+.layer-5-glow {
+  transform: translateZ(380px);
+  background-image: url(../images/layer-5-glow.png);
+}
+
+// makes these layers transparent to mouse events
+.layer-3-rain,
+.layer-4-leaves,
+.layer-5-glow {
+  pointer-events: none;
+}
+
+.main-content {
+  line-height: 1.35em;
+  margin-top: calc(var(--ratio) * 5.5);
+  font-size: calc(var(--ratio) * 2.9);
+  letter-spacing: calc(var(--ratio) * -0.15);
+  text-align: center;
+  text-transform: uppercase;
+
+  .subtitle {
+    font-family: merriweather-italic-3d, sans-serif;
+    font-size: calc(var(--ratio) * 0.73);
+    line-height: 3;
+    letter-spacing: normal;
+    text-transform: none;
+  }
+}
+
+span.block {
+  display: block;
+}
+
+.btn {
+  font-family: Arial, sans-serif;
+  font-weight: 600;
+  font-size: calc(var(--ratio) * 0.71);
+  padding: calc(var(--ratio) * 0.7) calc(var(--ratio) * 1.25);
+  letter-spacing: -0.02vw;
+  color: #fff;
+  border-radius: 10em;
+  border: rgb(255 255 255 / 0.4) 3px solid;
+  background-color: transparent;
+  text-transform: uppercase;
+  outline: none;
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgb(255 255 255 / 0.2);
+  }
+}
+
+.btn-view {
+  margin-top: calc(var(--ratio) * 2.5);
+}
