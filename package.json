@@ -26,23 +26,23 @@
   "bugs": {
     "url": "https://github.com/webdiscus/parallax-3d-lens-effect/issues"
   },
+  "stackblitz": {
+    "startCommand": "npm run view"
+  },
   "scripts": {
     "start": "webpack serve --mode=development",
-    "watch": "webpack watch --mode=development",
     "build": "webpack --mode=production --progress",
-    "docs": "npm run build && cp -R ./dist/* ./docs",
-    "preview": "npm run build && http-server dist --port 4321 -o",
-    "test": "echo 'No test specified' && exit 1"
+    "view": "npm run build && serve dist"
   },
   "devDependencies": {
     "@babel/core": "^7.23.0",
     "@babel/preset-env": "^7.22.20",
     "css-loader": "^6.8.1",
     "html-bundler-webpack-plugin": "^2.14.2",
-    "http-server": "^14.1.1",
     "prettier": "^3.0.3",
     "sass": "^1.68.0",
     "sass-loader": "^13.3.2",
+    "serve": "^14.2.1",
     "webpack": "^5.88.2",
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^4.15.1"

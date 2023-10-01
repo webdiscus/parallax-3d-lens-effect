@@ -12,17 +12,6 @@ module.exports = {
     path: path.join(__dirname, 'dist'),
   },
 
-  resolve: {
-    // use aliases used in sources instead of relative paths like ../../
-    alias: {
-      '@views': path.join(__dirname, 'src/views/'),
-      '@images': path.join(__dirname, 'src/assets/images/'),
-      '@fonts': path.join(__dirname, 'src/assets/fonts/'),
-      '@styles': path.join(__dirname, 'src/assets/styles/'),
-      '@scripts': path.join(__dirname, 'src/assets/scripts/'),
-    },
-  },
-
   plugins: [
     new HtmlBundlerPlugin({
       entry: {
@@ -37,13 +26,14 @@ module.exports = {
         // CSS output filename
         filename: 'css/[name].[contenthash:8].css',
       },
+      // generate preload tags for heavy assets
       preload: [
         {
           test: /\.(woff2?)$/,
           attributes: { as: 'font', crossorigin: true },
         },
         {
-          test: /\.(png|jpe?g|webp)$/,
+          test: /\.(png|jpe?g|webp|svg)$/,
           as: 'image',
         },
       ],
@@ -74,7 +64,8 @@ module.exports = {
   },
 
   performance: {
-    hints: false, // don't show the size limit warning when a bundle is bigger than 250 KB
+    // don't show the size limit warning
+    hints: false,
   },
 
   devServer: {
