@@ -1,7 +1,9 @@
 # parallax-3d-lens-effect
 
-Webpack boilerplate to create 3D lens parallax effect by moving mouse using HTML/CSS/JS.
-JavaScript is used to pass the mouse coordinates into CSS as variables and create a "rain effect".
+The demonstration how to create 3D lens parallax effect when moving mouse using CSS `transform`.
+
+The parallax effect only uses JavaScript to pass mouse coordinates into CSS variables.
+The background "rain effect" is created with canvas and animated using JavaScript.
 
 To generate static HTML with assets from their source files is used the [html-bundler-webpack-plugin](https://github.com/webdiscus/html-bundler-webpack-plugin).
 
