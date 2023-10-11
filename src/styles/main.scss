@@ -8,36 +8,22 @@
   --rotate-y: 0;
   --rotate-x: 0;
   --ratio: calc(1vw + 1vh);
-  --logo-size: calc(var(--ratio) * 7.8);
   --transition: 1.5s cubic-bezier(0.05, 0.5, 0, 1);
-}
-
-@font-face {
-  font-family: kamerik-3d, Tahoma;
-  src: url(../fonts/kamerik205-heavy.woff2);
-  font-weight: 900;
-}
-
-@font-face {
-  font-family: merriweather-italic-3d;
-  src: url(../fonts/merriweather-regular-italic.woff2);
+  --logo-size: calc(var(--ratio) * 7.8);
 }
 
 body {
-  background-color: #000;
+  font-family: Arial, sans-serif;
   color: #fff;
-  font-family: kamerik-3d, sans-serif;
+  background-color: #000;
 }
 
-.logo {
-  width: var(--logo-size);
-  height: var(--logo-size);
-  position: absolute;
-  left: calc(51% - calc(var(--logo-size) / 2));
-  top: calc(var(--ratio) * 2.8);
-  background-image: url(../images/logo.svg);
-  background-repeat: no-repeat;
-  z-index: 1;
+// 3D parallax effect
+.parallax {
+  transform-style: preserve-3d;
+  transform: rotateX(var(--rotate-x)) rotateY(var(--rotate-y));
+  transition: transform var(--transition);
+  will-change: transform;
 }
 
 .layers {
@@ -48,10 +34,6 @@ body {
 .layers__container {
   height: 100vh;
   min-height: 500px;
-  transform-style: preserve-3d;
-  transform: rotateX(var(--rotate-x)) rotateY(var(--rotate-y));
-  transition: transform var(--transition);
-  will-change: transform;
 }
 
 .layers__item {
@@ -63,7 +45,6 @@ body {
   bottom: -5vw;
   left: -5vw;
   right: -5vw;
-  //inset: -5vw;
   background-size: cover;
   background-position: center;
 }
@@ -103,17 +84,29 @@ body {
   pointer-events: none;
 }
 
+.logo {
+  position: absolute;
+  left: calc(51% - calc(var(--logo-size) / 2));
+  top: calc(var(--ratio) * 2.8);
+  width: var(--logo-size);
+  height: var(--logo-size);
+  background-image: url(../images/logo.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  z-index: 1;
+}
+
 .main-content {
-  line-height: 1.35em;
   margin-top: calc(var(--ratio) * 5.5);
   font-size: calc(var(--ratio) * 2.9);
   letter-spacing: calc(var(--ratio) * -0.15);
+  line-height: 1.35em;
   text-align: center;
   text-transform: uppercase;
 
   .subtitle {
-    font-family: merriweather-italic-3d, sans-serif;
     font-size: calc(var(--ratio) * 1.2);
+    font-style: italic;
     line-height: 3;
     letter-spacing: normal;
     text-transform: none;
@@ -125,14 +118,13 @@ span.block {
 }
 
 .btn {
-  font-family: Arial, sans-serif;
   font-weight: 600;
   font-size: calc(var(--ratio) * 0.71);
   padding: calc(var(--ratio) * 0.7) calc(var(--ratio) * 1.25);
   letter-spacing: -0.02vw;
-  color: #fff;
   border-radius: 10em;
   border: rgb(255 255 255 / 0.4) 3px solid;
+  color: #fff;
   background-color: transparent;
   text-transform: uppercase;
   outline: none;
@@ -143,6 +135,6 @@ span.block {
   }
 }
 
-.btn-view {
+.btn-github {
   margin-top: calc(var(--ratio) * 2.5);
 }

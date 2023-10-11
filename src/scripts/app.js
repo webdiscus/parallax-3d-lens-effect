@@ -1,12 +1,9 @@
 import Rain from './rain';
+import parallax from './parallax';
 
-const rain = new Rain();
+// the 'rain effect' in the background
+const rain = new Rain({});
 rain.animate();
 
-document.addEventListener('mousemove', (e) => {
-  const rotateX = (e.clientY - window.innerHeight / 2) * 0.01;
-  const rotateY = (e.clientX - window.innerWidth / 2) * -0.005;
-  Object.assign(document.documentElement, {
-    style: `--rotate-x: ${rotateX}deg;--rotate-y: ${rotateY}deg;`,
-  });
-});
+// enable parallax
+parallax({ smoothMove: 1 });

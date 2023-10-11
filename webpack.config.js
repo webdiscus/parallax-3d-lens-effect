@@ -29,10 +29,6 @@ module.exports = {
       // generate preload tags for heavy assets
       preload: [
         {
-          test: /\.(woff2?)$/,
-          attributes: { as: 'font', crossorigin: true },
-        },
-        {
           test: /\.(png|jpe?g|webp|svg)$/,
           as: 'image',
         },
@@ -45,13 +41,6 @@ module.exports = {
       {
         test: /\.(css|sass|scss)$/,
         use: ['css-loader', 'sass-loader'],
-      },
-      {
-        test: /\.(woff2?)$/,
-        type: 'asset/resource',
-        generator: {
-          filename: 'fonts/[name][ext][query]',
-        },
       },
       {
         test: /[\\/]images[\\/].+(png|jpe?g|svg|webp|ico)$/,

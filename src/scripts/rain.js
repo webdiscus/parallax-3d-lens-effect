@@ -1,31 +1,61 @@
 const random = (min, max) => Math.floor(Math.random() * max) + min;
 
-function RainDrop(context, { x, y, size, thickness, velocity, opacity }) {
-  this.x = x;
-  this.y = y;
-  this.endY = size;
-  this.velocity = velocity;
-  this.opacity = opacity;
+/**
+ * @typedef {[min: Number, max: Number]} Range
+ */
 
-  this.draw = function () {
+/**
+ * The single drop of the 'rain effect'.
+ */
+class RainDrop {
+  /**
+   * @param { CanvasRenderingContext2D} context
+   * @param {Number} x
+   * @param {Number} y
+   * @param {Number} size
+   * @param {Number} thickness
+   * @param {Number} velocity
+   * @param {Number} opacity
+   */
+  constructor(context, { x, y, size, thickness, velocity, opacity }) {
+    this.context = context;
+    this.x = x;
+    this.y = y;
+    this.endY = size;
+    this.thickness = thickness;
+    this.velocity = velocity;
+    this.opacity = opacity;
+  }
+
+  draw() {
+    const { context, x, y, endY, thickness, opacity } = this;
     context.beginPath();
-    context.moveTo(this.x, this.y);
-    context.lineTo(this.x, this.y - this.endY);
+    context.moveTo(x, y);
+    context.lineTo(x, y - endY);
     context.lineWidth = thickness;
-    context.strokeStyle = 'rgba(255, 255, 255, ' + this.opacity + ')';
+    context.strokeStyle = 'rgba(255, 255, 255, ' + opacity + ')';
     context.stroke();
-  };
+  }
 
-  this.update = function () {
+  update() {
     const canvasBottom = window.innerHeight + 100;
     this.y = this.y >= canvasBottom ? this.endY - 100 : this.y + this.velocity;
     this.draw();
-  };
+  }
 }
 
+/**
+ * The 'rain effect' in the background.
+ */
 class Rain {
   drops = [];
 
+  /**
+   * @param {Range} size The range of drop size.
+   * @param {Range} thickness The range of drop thickness.
+   * @param {Range} speed The range of drop speed.
+   * @param {Number} amount Amount of drops.
+   */
   constructor({ size = [2, 10], thickness = [1, 2], speed = [2, 20], amount = 140 } = {}) {
     const [sizeMin, sizeMax] = size;
     const [speedMin, speedMax] = speed;
